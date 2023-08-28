@@ -1,4 +1,3 @@
-//Laravel05の課題4
  <!DOCTYPE html>
  <head>
         <meta charset="utf-8">
