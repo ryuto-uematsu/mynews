@@ -18,21 +18,37 @@ Route::get('/', function () {
 });
 
 use App\Http\Controllers\Admin\NewsController;
-Route::controller(NewsController::class)->prefix('admin')->group(function() {
-    Route::get('news/create', 'add')->middleware('auth');
+Route::controller(NewsController::class)->prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+    Route::get('news/create', 'add')->name('news.add');
+    Route::post('news/create', 'create')->name('news.create');
 });
 
-//PHP/Laravel04の課題3
-use App\Http\Controllers\XXX\AAAController;
-Route::controller(AAAController::class)->prefix('XXX')->group(function() {
-    Route::get('bbb');
+// // 1)間違い
+// use App\Http\Controllers\XXX\AAAController;
+// //                       ^^^^^^^^^^^^^^^^^ 使用 use するコントローラクラスを宣言している
+// Route::controller(AAAController::class)->prefix('XXX')->group(function() {
+// //                                     ^^^^^^^^^^^^^^^ URL の接頭辞として XXX を指定している
+//     Route::get('bbb');
+// //             ^^^^^ URL を指定してしまっている XXX/bbb へのアクセスとなる
+// });
+// 2)カリキュラム通り
+use App\Http\Controllers\AAAController;
+Route::controller(AAAController::class)->group(function() {
+    Route::get('XXX', 'bbb');
 });
+// // 3)日本語ドキュメントのシンプルな形
+// use App\Http\Controllers\AAAController;
+// Route::get('/XXX', [AAAController::class, 'bbb']);
 
-//PHP/Laravel04の課題4
 use App\Http\Controllers\Admin\ProfileController;
-Route::controller(ProfileController::class)->prefix('admin')->group(function() {
-    Route::get('profile/create', 'add')->middleware('auth');
-    Route::get('profile/edit', 'edit')->middleware('auth');
+Route::controller(ProfileController::class)->prefix('admin')->name('admin.')->middleware('auth')->group(function() {
+    Route::get('profile/create', 'add');
+    Route::get('profile/edit', 'edit');
+//                             ^^^^^^ コントローラアクション名を指定する
+//             ^^^^^^^^^^^^^^ URL を指定する
+    Route::post('profile/create', 'create')->name('profile.create');
+    Route::post('profile/edit', 'update')->name('profile.update');
+    
 });
 
 

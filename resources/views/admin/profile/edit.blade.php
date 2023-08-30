@@ -1,4 +1,5 @@
  <!DOCTYPE html>
+ @extends('layouts.profile')
  <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -6,7 +7,9 @@
 
         <title>MyNews</title>
     </head>
+ @section('content')
     <body>
         <h1>プロフィール編集画面</h1>
     </body>
+ @endsection    
 </html>
