@@ -29,9 +29,9 @@
                         <label class="col-md-2">性別</label>
                         <div class="col-md-10">
                             <div class="example">
-                                <label><input type="radio" name="gender" value="{{ old('gender') }}">男性</label>
-                                <label> <input type="radio" name="gender" value="{{ old('gender') }}">女性</label>
-                                <label><input type="radio" name="gender" value="{{ old('gender') }}">その他</label>
+                                <label><input type="radio" name="gender">男性</label>
+                                <label> <input type="radio" name="gender">女性</label>
+                                <label><input type="radio" name="gender">その他</label>
                             </div>
                         </div>
                     </div>
