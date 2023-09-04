@@ -46,12 +46,14 @@ Route::controller(AAAController::class)->group(function() {
 
 use App\Http\Controllers\Admin\ProfileController;
 Route::controller(ProfileController::class)->prefix('admin')->name('admin.')->middleware('auth')->group(function() {
-    Route::get('profile/create', 'add');
-    Route::get('profile/edit', 'edit');
+    Route::get('profile/create', 'add')->name('profile.add');
+    Route::get('profile/edit', 'edit')->name('profile.edit');
 //                             ^^^^^^ コントローラアクション名を指定する
 //             ^^^^^^^^^^^^^^ URL を指定する
     Route::post('profile/create', 'create')->name('profile.create');
     Route::post('profile/edit', 'update')->name('profile.update');
+    Route::get('profile', 'index')->name('profile.index');
+    Route::get('profile/delete', 'delete')->name('profile.delete');
 });
 
 
