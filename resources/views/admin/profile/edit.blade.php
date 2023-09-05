@@ -43,9 +43,26 @@
                             <textarea class="form-control" name="introduction" rows="10">{{ old('introduction',$profile_form->introduction) }}</textarea>
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <div class="col-md-10">
+                            <input type="hidden" name="id" value="{{ $profile_form->id }}">
                     @csrf
                     <input type="submit" class="btn btn-primary" value="送信">
+                        </div>
+                    </div>
                 </form>
+                <div class="row mt-5">
+                    <div class="col-md-4 mx-auto">
+                        <h2>編集履歴</h2>
+                        <ul class="list-group">
+                            @if ($profile_form->logs != NULL)
+                                @foreach ($profile_form->logs as $log)
+                                    <li class="list-group-item">{{ $log->edited_at }}</li>
+                                @endforeach
+                            @endif
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

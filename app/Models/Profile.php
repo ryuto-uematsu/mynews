@@ -18,8 +18,8 @@ class Profile extends Model
         'introduction' => 'required',
     );
     
-     public function profile_update()
+     public function logs()
     {
-        return $this->hasMany('App\Models\Profile_update');
+        return $this->hasMany('App\Models\Log');
     }
 }

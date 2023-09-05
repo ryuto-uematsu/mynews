@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Profile;
-use App\Models\Profile_update;
+use App\Models\Log;
 use Carbon\Carbon;
 
 class ProfileController extends Controller
@@ -59,13 +59,13 @@ class ProfileController extends Controller
         unset($profile_form['_token']);
 
         // 該当するデータを上書きして保存する
-        $profile->fill($profile_form)->save();
+        $profile->fill($profile_form)->save();  
 
         // 以下を追記
-        $profile_update = new Profile_update();
-        $profile_update->profile_id = $profile->id;
-        $profile_update->edited_at = Carbon::now();
-        $profile_update->save();
+        $log = new Log();
+        $log->profile_id = $profile->id;
+        $log->edited_at = Carbon::now();
+        $log->save();
 
         return redirect('admin/profile');
     }
